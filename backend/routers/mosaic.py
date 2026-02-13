@@ -21,6 +21,7 @@ async def create_mosaic(
     request: Request,
     file: UploadFile,
     pixel_size: int = Query(default=20, ge=1, le=100),
+    score_threshold: float = Query(default=0.5, ge=0.0, le=1.0),
 ):
     # Validate content type
     if file.content_type not in ALLOWED_CONTENT_TYPES:
@@ -47,8 +48,8 @@ async def create_mosaic(
     # Detect faces
     image_np = np.array(image)
     face_detector = request.app.state.face_detector
-    faces = face_detector.detect(image_np)
-    logger.info("Detected %d face(s), pixel_size=%d", len(faces), pixel_size)
+    faces = face_detector.detect(image_np, score_threshold=score_threshold)
+    logger.info("Detected %d face(s), pixel_size=%d, score_threshold=%.1f", len(faces), pixel_size, score_threshold)
 
     # Apply mosaic
     result_image = apply_mosaic(image, faces, pixel_size)

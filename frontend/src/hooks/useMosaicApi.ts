@@ -16,7 +16,7 @@ export function useMosaicApi() {
   const abortRef = useRef<AbortController | null>(null);
 
   const processImage = useCallback(
-    async (file: File, pixelSize: number = 20) => {
+    async (file: File, pixelSize: number = 20, scoreThreshold: number = 0.5) => {
       // File size check (sync with backend)
       if (file.size > MAX_FILE_SIZE) {
         setError("ファイルサイズが10MBを超えています。");
@@ -45,7 +45,7 @@ export function useMosaicApi() {
         formData.append("file", file);
 
         const response = await fetch(
-          `/api/mosaic?pixel_size=${pixelSize}`,
+          `/api/mosaic?pixel_size=${pixelSize}&score_threshold=${scoreThreshold}`,
           {
             method: "POST",
             body: formData,

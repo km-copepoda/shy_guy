@@ -36,18 +36,23 @@ class FaceDetector:
         self.score_threshold = score_threshold
         self.nms_threshold = nms_threshold
 
-    def detect(self, image_np: np.ndarray) -> list[tuple[int, int, int, int]]:
+    def detect(
+        self,
+        image_np: np.ndarray,
+        score_threshold: float | None = None,
+    ) -> list[tuple[int, int, int, int]]:
         """Detect faces in an RGB numpy array.
 
         Returns a list of (x, y, w, h) integer tuples.
         """
         h, w = image_np.shape[:2]
+        threshold = score_threshold if score_threshold is not None else self.score_threshold
 
         detector = cv2.FaceDetectorYN.create(
             self.model_path,
             "",
             (w, h),
-            self.score_threshold,
+            threshold,
             self.nms_threshold,
         )
 
