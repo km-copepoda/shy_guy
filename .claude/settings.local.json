@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"c:/Users/kazuk/Documents/shy_guy/backend/venv/Scripts/pip.exe\" install httpx)",
+      "Bash(\"c:/Users/kazuk/Documents/shy_guy/backend/venv/Scripts/python.exe\" -m pytest -v)",
+      "Bash(npx vite build)",
+      "Bash(docker compose:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}
