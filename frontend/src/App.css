@@ -1,0 +1,167 @@
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Uploader */
+.uploader {
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+  margin-bottom: 1.5rem;
+}
+
+.uploader:hover {
+  border-color: #007bff;
+}
+
+.uploader.dragging {
+  border-color: #007bff;
+  background-color: rgba(0, 123, 255, 0.05);
+}
+
+.uploader.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.uploader p {
+  margin: 0.25rem 0;
+}
+
+.uploader-hint {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+/* Loading / Error */
+.loading {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.error {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Preview */
+.preview-container {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.preview-card {
+  flex: 1 1 300px;
+  max-width: 420px;
+}
+
+.preview-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.preview-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faces-info {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Buttons */
+.download-btn {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.download-btn:hover {
+  background-color: #0056b3;
+}
+
+.reset-btn {
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.25rem;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.reset-btn:hover {
+  border-color: #999;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .app {
+    color: #e0e0e0;
+  }
+
+  .subtitle {
+    color: #aaa;
+  }
+
+  .uploader {
+    border-color: #555;
+  }
+
+  .uploader:hover,
+  .uploader.dragging {
+    border-color: #4da3ff;
+    background-color: rgba(77, 163, 255, 0.08);
+  }
+
+  .uploader-hint {
+    color: #777;
+  }
+
+  .faces-info {
+    color: #bbb;
+  }
+
+  .preview-card img {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .reset-btn {
+    color: #e0e0e0;
+    border-color: #555;
+  }
+
+  .reset-btn:hover {
+    border-color: #999;
+  }
+}
