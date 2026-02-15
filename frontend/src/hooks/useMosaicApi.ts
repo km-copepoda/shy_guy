@@ -3,6 +3,7 @@ import { useCallback, useRef, useState } from "react";
 interface MosaicResult {
   imageUrl: string;
   facesDetected: number;
+  mediaType: string;
 }
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
@@ -67,7 +68,8 @@ export function useMosaicApi() {
           10
         );
 
-        setResult({ imageUrl, facesDetected });
+        const mediaType = response.headers.get("Content-Type") || "image/png";
+        setResult({ imageUrl, facesDetected, mediaType });
       } catch (err: unknown) {
         if (err instanceof DOMException && err.name === "AbortError") {
           // Normal cancellation — ignore

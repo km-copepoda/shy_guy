@@ -85,6 +85,7 @@ export default function App() {
         originalUrl={originalUrl}
         processedUrl={result?.imageUrl ?? null}
         facesDetected={result?.facesDetected ?? null}
+        mediaType={result?.mediaType ?? null}
       />
 
       {(originalUrl || result) && (

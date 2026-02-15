@@ -2,12 +2,29 @@ interface ImagePreviewProps {
   originalUrl: string | null;
   processedUrl: string | null;
   facesDetected: number | null;
+  mediaType: string | null;
+}
+
+function buildDownloadFilename(mediaType: string | null): string {
+  const now = new Date();
+  const ts = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0"),
+    "_",
+    String(now.getHours()).padStart(2, "0"),
+    String(now.getMinutes()).padStart(2, "0"),
+    String(now.getSeconds()).padStart(2, "0"),
+  ].join("");
+  const ext = mediaType === "image/png" ? ".png" : ".jpg";
+  return ts + ext;
 }
 
 export default function ImagePreview({
   originalUrl,
   processedUrl,
   facesDetected,
+  mediaType,
 }: ImagePreviewProps) {
   if (!originalUrl) return null;
 
@@ -34,7 +51,7 @@ export default function ImagePreview({
           <a
             className="download-btn"
             href={processedUrl}
-            download="mosaic_result.png"
+            download={buildDownloadFilename(mediaType)}
           >
             ダウンロード
           </a>
